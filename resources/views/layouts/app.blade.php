@@ -36,10 +36,27 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ url('/home') }}">Home</a></li>
-                        <li><a href="{{ route('users.index') }}">Users</a></li>
-                        <li><a href="{{ route('roles.index') }}">Roles</a></li>
-                        <li><a href="{{ route('itemCRUD2.index') }}">Items</a></li>
+                        <li @if (Request::is('home*')) class="active" @endif>
+                            <a href="{{ url('/home') }}">Home</a>
+                        </li>
+                        <li @if (Request::is('users*')) class="active" @endif>
+                            <a href="{{ route('users.index') }}">Users</a>
+                        </li>
+                        <li @if (Request::is('roles*')) class="active" @endif>
+                            <a href="{{ route('roles.index') }}">Roles</a>
+                        </li>
+                        <li @if (Request::is('itemCRUD2*')) class="active" @endif>
+                            <a href="{{ route('itemCRUD2.index') }}">Items</a>
+                        </li>
+                        <li @if (Request::is('admin/post*')) class="active" @endif>
+                            <a href="/articleAdmin/post">Posts</a>
+                        </li>
+                        <li @if (Request::is('admin/tag*')) class="active" @endif>
+                            <a href="/articleAdmin/tag">Tags</a>
+                        </li>
+                        <li @if (Request::is('admin/upload*')) class="active" @endif>
+                            <a href="/articleAdmin/upload">Uploads</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -13,7 +13,7 @@ class RoleTableSeeder extends Seeder
     {
         $role = [
             [
-                'name' => 'SystemAdmin',
+                'name' => 'User',
                 'display_name' => 'Administrator of system',
                 'description' => 'Administrator of system'
             ],

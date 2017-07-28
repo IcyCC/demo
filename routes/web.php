@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 
 
@@ -36,12 +34,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
+//系统管理员登录的路由控制
 Route::group(['namespace'=>'User', 'middleware' => ['auth']], function() {
 
 //    Route::get('/home', 'HomeController@index');
 
-    Route::resource('users','User\UserController');
+    Route::resource('users','UserController');
 
     Route::get('roles',['as'=>'roles.index','uses'=>'RolesController@index',
         'middleware' => ['permission:role-list|role-create|role-edit|role-delete']]);
@@ -60,7 +58,24 @@ Route::group(['namespace'=>'User', 'middleware' => ['auth']], function() {
     Route::patch('itemCRUD2/{id}',['as'=>'itemCRUD2.update','uses'=>'ItemCRUD2Controller@update','middleware' => ['permission:item-edit']]);
     Route::delete('itemCRUD2/{id}',['as'=>'itemCRUD2.destroy','uses'=>'ItemCRUD2Controller@destroy','middleware' => ['permission:item-delete']]);
 });
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+//科普文章管理员 路由控制
+Route::group(['namespace' => 'ArticleAdmin', 'middleware' => 'auth'], function () {
+    Route::resource('articleAdmin/post', 'PostController');
+    Route::resource('articleAdmin/tag', 'TagController', ['except' => 'show']);
+    Route::get('articleAdmin/upload', 'UploadArticleController@index');
+});
+
+//游客登录的路由控制
+Route::group(['namespace'=>'Tourist'], function(){
+    Route::get('/', function () {
+        return view('welcome');
+    });
+    Route::get('article', 'PostController@index');
+    Route::get('article/{slug}', 'ArticleController@showPost');
+});
+
 Route::get('excel/export','DataImport\ExcelController@export');
