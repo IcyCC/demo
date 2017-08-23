@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use App\models\Permission;
 class PermissionTableSeeder extends Seeder
 {
     /**
@@ -11,6 +11,7 @@ class PermissionTableSeeder extends Seeder
      */
     public function run()
     {
+
         $permission = [
             [
                 'name' => 'role-list',

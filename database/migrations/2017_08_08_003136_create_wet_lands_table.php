@@ -156,7 +156,7 @@ class CreateWetLandsTable extends Migration
         });
 
         //8.	Wet_land_soil_exchange土壤交换量数据表(cmol/kg)
-        Schema::create('wet_land_soil_exchange土壤交换量数据表', function (Blueprint $table) {
+        Schema::create('Wet_land_soil_exchange', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('station_id')->references('id')->on('stations')
                 ->onUpdate('cascade')->onDelete('cascade');
