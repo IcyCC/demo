@@ -67,6 +67,10 @@ Route::group(['namespace' => 'ArticleAdmin', 'middleware' => 'auth'], function (
     Route::resource('articleAdmin/post', 'PostController');
     Route::resource('articleAdmin/tag', 'TagController', ['except' => 'show']);
     Route::get('articleAdmin/upload', 'UploadArticleController@index');
+    Route::post('articleAdmin/upload/file', 'UploadArticleController@uploadFile');
+    Route::post('articleAdmin/upload/deletefile', 'UploadArticleController@deleteFile');
+    Route::post('articleAdmin/upload/folder', 'UploadArticleController@createFolder');
+    Route::post('articleAdmin/upload/deletefolder', 'UploadArticleController@deleteFolder');
 });
 
 //游客登录的路由控制
